@@ -1,0 +1,84 @@
+\vspace{2mm}
+\ffigbox[\FBwidth]{%
+\caption{\centering Représentation du domaine fondamental \(\mathcal D\) dans \(\bb C\)}\label{fig:tmp}
+}{
+    \fbox{
+        \begin{tikzpicture}
+            \begin{axis}[
+                xlabel={\(\Re(z)\)},
+                ylabel={\(\Im(z)\)},
+                xmin=-1, xmax=1,
+                ymin=-0.2, ymax=2.5,
+                grid=both,
+                width=6cm,
+                height=7cm,
+                axis equal image,
+                legend pos=outer north east,
+                legend cell align=left,
+                legend image post style={fill opacity=0.45},
+                legend style={fill=pagebg, draw=pagetext},
+                ytick={0,1,2},
+                yticklabels={0,$i$,$2i$},
+            ]
+
+            \draw[very thick, color=green!60!black]
+            (axis cs:0.5,{sqrt(3)/2}) -- (axis cs:0.5,2.5);
+
+            \draw[very thick, color=green!60!black, dashed]
+            (axis cs:0.5,0) -- (axis cs:0.5,{sqrt(3)/2});
+            \addlegendentry{\(\Re(z) = 0.5\)}
+
+            \draw[very thick, color=green!60!black]
+            (axis cs:-0.5,{sqrt(3)/2}) -- (axis cs:-0.5,2.5);
+
+            \draw[very thick, color=green!60!black, dashed]
+            (axis cs:-0.5,0) -- (axis cs:-0.5,{sqrt(3)/2});
+            \addlegendentry{\(\Re(z) = -0.5\)}
+
+            \addplot[
+                domain=-1:-0.48, 
+                samples=100,
+                very thick, 
+                color=blue, 
+                dotted
+            ] {sqrt(1-x^2)};
+            \addplot[
+                domain=0.48:1, 
+                samples=100,
+                very thick, 
+                color=blue, 
+                dotted
+            ] {sqrt(1-x^2)};
+            \addplot[
+                domain=-0.5:-0.3, 
+                samples=100,
+                very thick, 
+                color=blue
+            ] {sqrt(1-x^2)};
+            \addplot[
+                domain=0.3:0.5, 
+                samples=100,
+                very thick, 
+                color=blue
+            ] {sqrt(1-x^2)};
+            \addlegendentry{\(x_1^2 + x_2^2 = 1\)}
+            \addplot[
+                domain=170:370, % controls how wide the arc is
+                samples=100,
+                very thick,
+                color=blue
+            ] ({0.3*cos(x)}, {1 - 0.3*sin(x)});
+
+            \addplot[
+                only marks,
+                mark=*,
+                mark size=2pt,
+                color=pagetext
+            ] coordinates {(0,1)};
+            \addlegendentry{\(a\)}
+
+
+            \end{axis}
+        \end{tikzpicture}
+    }
+}
