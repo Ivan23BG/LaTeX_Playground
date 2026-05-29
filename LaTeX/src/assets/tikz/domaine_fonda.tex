@@ -1,84 +1,92 @@
-\vspace{2mm}
-\ffigbox[\FBwidth]{%
-\caption{\centering Représentation du domaine fondamental \(\mathcal D\) dans \(\bb C\)}\label{fig:tmp}
-}{
-    \fbox{
-        \begin{tikzpicture}
-            \begin{axis}[
-                xlabel={\(\Re(z)\)},
-                ylabel={\(\Im(z)\)},
-                xmin=-1, xmax=1,
-                ymin=-0.2, ymax=2.5,
-                grid=both,
-                width=6cm,
-                height=7cm,
-                axis equal image,
-                legend pos=outer north east,
-                legend cell align=left,
-                legend image post style={fill opacity=0.45},
-                legend style={fill=pagebg, draw=pagetext},
-                ytick={0,1,2},
-                yticklabels={0,$i$,$2i$},
-            ]
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.2, every node/.style={scale=0.9}]
 
-            \draw[very thick, color=green!60!black]
-            (axis cs:0.5,{sqrt(3)/2}) -- (axis cs:0.5,2.5);
+    % =================================================================
+    % CARRÉ 1: Points Aléatoires
+    % =================================================================
+    \begin{scope}[shift={(0,0)}]
+        % Le domaine (Carré)
+        \draw[thick, line width=1.2pt] (0,0) rectangle (4,4);
+        \node[above=6pt] at (2,4) {\textsf{\textbf{Initialisation des points}}};
+        
+        % Définition des coordonnées des germes
+        \coordinate (A) at (0.15, 2.3);
+        \coordinate (B) at (0.9, 1.8);
+        \coordinate (C) at (1.2, 1.4);
+        \coordinate (D) at (1.2, 2.9);
+        \coordinate (E) at (1.9, 3.2);
+        \coordinate (F) at (2.1, 2.45);
+        \coordinate (G) at (2.2, 1.2);
+        \coordinate (H) at (2.4, 3.4);
+        \coordinate (I) at (2.6, 1.3);
+        \coordinate (J) at (3.7, 2);
+        
+        % Dessin des points
+        \foreach \p in {A,B,C,D,E,F,G,H,I,J} \fill (\p) circle (2.5pt);
+        % \foreach \p in {A,B,C,D,E,F,G,H,I,J} \node[below=3pt] at (\p) {\textsf{\textbf{\p}}};
+    \end{scope}
 
-            \draw[very thick, color=green!60!black, dashed]
-            (axis cs:0.5,0) -- (axis cs:0.5,{sqrt(3)/2});
-            \addlegendentry{\(\Re(z) = 0.5\)}
+    % =================================================================
+    % CARRÉ 2: Itération 0: construction du diagramme de voronoi
+    % =================================================================
+    \begin{scope}[shift={(5.5,0)}]
+        % Le domaine
+        \draw[thick, line width=1.2pt] (0,0) rectangle (4,4);
+        \node[above=6pt] at (2,4) {\textsf{\textbf{1. Diagramme de Voronoi}}};
+        
+        % Même points
+        \coordinate (A) at (0.15, 2.3);
+        \coordinate (B) at (0.9, 1.8);
+        \coordinate (C) at (1.2, 1.4);
+        \coordinate (D) at (1.2, 2.9);
+        \coordinate (E) at (1.9, 3.2);
+        \coordinate (F) at (2.1, 2.45);
+        \coordinate (G) at (2.2, 1.2);
+        \coordinate (H) at (2.4, 3.4);
+        \coordinate (I) at (2.6, 1.3);
+        \coordinate (J) at (3.7, 2);
+        
+        % --- SEGMENTS DU DIAGRAMME DE VORONOI (33 segments générés) ---
+        \draw[thin] (4.0, 0.314) -- (4.0, 3.582);
+        \draw[thin] (4.0, 3.582) -- (4.0, 3.582);
+        \draw[thin] (3.028, 2.679) -- (4.0, 3.582);
+        \draw[thin] (2.864, 2.099) -- (4.0, 0.314);
+        \draw[thin] (2.864, 2.099) -- (3.028, 2.679);
+        \draw[thin] (4.0, 0.0) -- (4.0, 0.314);
+        \draw[thin] (0.0, 0.0) -- (0.0, 0.813);
+        \draw[thin] (4.0, 3.582) -- (4.0, 4.0);
+        \draw[thin] (2.254, 1.833) -- (2.864, 2.099);
+        \draw[thin] (1.683, 2.74) -- (2.307, 2.907);
+        \draw[thin] (2.307, 2.907) -- (3.028, 2.679);
+        \draw[thin] (1.435, 2.245) -- (1.683, 2.74);
+        \draw[thin] (1.572, 1.992) -- (1.799, 1.797);
+        \draw[thin] (1.435, 2.245) -- (1.572, 1.992);
+        \draw[thin] (1.799, 1.797) -- (2.254, 1.833);
+        \draw[thin] (1.143, 4.0) -- (1.87, 4.0);
+        \draw[thin] (0.0, 4.0) -- (1.143, 4.0);
+        \draw[thin] (1.87, 4.0) -- (4.0, 4.0);
+        \draw[thin] (1.87, 4.0) -- (2.307, 2.907);
+        \draw[thin] (1.143, 4.0) -- (1.683, 2.74);
+        \draw[thin] (1.44, 0.0) -- (2.713, 0.0);
+        \draw[thin] (1.44, 0.0) -- (1.799, 1.797);
+        \draw[thin] (2.254, 1.833) -- (2.713, 0.0);
+        \draw[thin] (2.713, 0.0) -- (4.0, 0.0);
+        \draw[thin] (0.0, 0.0) -- (1.44, 0.0);
+        \draw[thin] (0.0, 0.813) -- (1.572, 1.992);
+        \draw[thin] (0.0, 3.781) -- (0.775, 2.425);
+        \draw[thin] (0.0, 1.262) -- (0.775, 2.425);
+        \draw[thin] (0.0, 1.262) -- (0.0, 3.781);
+        \draw[thin] (0.0, 3.781) -- (0.0, 4.0);
+        \draw[thin] (0.775, 2.425) -- (1.435, 2.245);
+        \draw[thin] (0.0, 0.813) -- (0.0, 1.262);
+        \draw[thin] (0.0, 1.262) -- (0.0, 1.262);
 
-            \draw[very thick, color=green!60!black]
-            (axis cs:-0.5,{sqrt(3)/2}) -- (axis cs:-0.5,2.5);
 
-            \draw[very thick, color=green!60!black, dashed]
-            (axis cs:-0.5,0) -- (axis cs:-0.5,{sqrt(3)/2});
-            \addlegendentry{\(\Re(z) = -0.5\)}
-
-            \addplot[
-                domain=-1:-0.48, 
-                samples=100,
-                very thick, 
-                color=blue, 
-                dotted
-            ] {sqrt(1-x^2)};
-            \addplot[
-                domain=0.48:1, 
-                samples=100,
-                very thick, 
-                color=blue, 
-                dotted
-            ] {sqrt(1-x^2)};
-            \addplot[
-                domain=-0.5:-0.3, 
-                samples=100,
-                very thick, 
-                color=blue
-            ] {sqrt(1-x^2)};
-            \addplot[
-                domain=0.3:0.5, 
-                samples=100,
-                very thick, 
-                color=blue
-            ] {sqrt(1-x^2)};
-            \addlegendentry{\(x_1^2 + x_2^2 = 1\)}
-            \addplot[
-                domain=170:370, % controls how wide the arc is
-                samples=100,
-                very thick,
-                color=blue
-            ] ({0.3*cos(x)}, {1 - 0.3*sin(x)});
-
-            \addplot[
-                only marks,
-                mark=*,
-                mark size=2pt,
-                color=pagetext
-            ] coordinates {(0,1)};
-            \addlegendentry{\(a\)}
+        \foreach \p in {A,B,C,D,E,F,G,H,I,J} \fill (\p) circle (2.5pt);
+    \end{scope}
 
 
-            \end{axis}
-        \end{tikzpicture}
-    }
-}
+\end{tikzpicture}
+\caption{Processus de génération du maillage dual de Voronoi à partir d'un nuage de points.}
+\end{figure}

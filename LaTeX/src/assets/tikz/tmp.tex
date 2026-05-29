@@ -1,0 +1,80 @@
+
+    % =================================================================
+    % CARRÉ 2 : Triangulation de Delaunay
+    % =================================================================
+    \begin{scope}[shift={(5.5,0)}]
+        % Le domaine
+        \draw[thick, line width=1.2pt] (0,0) rectangle (4,4);
+        \node[above=6pt] at (2,4) {\textsf{\textbf{2. Triangulation de Delaunay}}};
+        
+        % Même points
+        \coordinate (A) at (0.8, 1.2);
+        \coordinate (B) at (1.5, 3.2);
+        \coordinate (C) at (2.2, 0.6);
+        \coordinate (D) at (2.8, 2.4);
+        \coordinate (E) at (3.5, 3.5);
+        \coordinate (F) at (3.6, 1.1);
+        \coordinate (G) at (1.1, 2.1);
+        
+        % Arêtes de Delaunay (en bleu)
+        \draw[blue, thick] (A)--(B)--(E)--(F)--(C)--cycle;
+        \draw[blue, thick] (G)--(A)--(C)--(D)--(B)--cycle;
+        \draw[blue, thick] (G)--(B)--(D)--cycle;
+        \draw[blue, thick] (G)--(C);
+        \draw[blue, thick] (D)--(E);
+        \draw[blue, thick] (D)--(F);
+        
+        % Dessin des points par-dessus
+        \foreach \p in {A,B,C,D,E,F,G} \fill (\p) circle (2.5pt);
+    \end{scope}
+
+    % =================================================================
+    % CARRÉ 3 : Maillage de Voronoi (Dual)
+    % =================================================================
+    \begin{scope}[shift={(11,0)}]
+        % Le domaine
+        \draw[thick, line width=1.2pt] (0,0) rectangle (4,4);
+        \node[above=6pt] at (2,4) {\textsf{\textbf{3. Maillage de Voronoi}}};
+        
+        % Même points
+        \coordinate (A) at (0.8, 1.2);
+        \coordinate (B) at (1.5, 3.2);
+        \coordinate (C) at (2.2, 0.6);
+        \coordinate (D) at (2.8, 2.4);
+        \coordinate (E) at (3.5, 3.5);
+        \coordinate (F) at (3.6, 1.1);
+        \coordinate (G) at (1.1, 2.1);
+        
+        % Centres des cercles circonscrits (sommets de Voronoi)
+        \coordinate (V1) at (2.65, 1.45);
+        \coordinate (V2) at (2.45, 3.15);
+        \coordinate (V3) at (1.85, 2.25);
+        \coordinate (V4) at (1.55, 1.25);
+        \coordinate (V5) at (2.05, 1.55);
+        
+        % Rappel de Delaunay en pointillé très léger pour illustrer la dualité
+        \draw[blue, opacity=0.15, dashed] (A)--(B)--(E)--(F)--(C)--cycle;
+        \draw[blue, opacity=0.15, dashed] (G)--(A)--(C)--(D)--(B)--cycle;
+        \draw[blue, opacity=0.15, dashed] (G)--(B)--(D)--cycle;
+        \draw[blue, opacity=0.15, dashed] (G)--(C);
+        \draw[blue, opacity=0.15, dashed] (D)--(E);
+        \draw[blue, opacity=0.15, dashed] (D)--(F);
+
+        % Frontières de Voronoi (en rouge/orange épais)
+        \draw[red!80!black, ultra thick] (V2) -- (V3) -- (V5) -- (V1) -- cycle;
+        \draw[red!80!black, ultra thick] (V3) -- (V4) -- (V5);
+        
+        % Extensions vers les bords du domaine
+        \draw[red!80!black, ultra thick] (V2) -- (2.8, 4.0);
+        \draw[red!80!black, ultra thick] (V2) -- (0.7, 4.0);
+        \draw[red!80!black, ultra thick] (V3) -- (0.0, 2.4);
+        \draw[red!80!black, ultra thick] (V4) -- (0.0, 0.9);
+        \draw[red!80!black, ultra thick] (V4) -- (1.4, 0.0);
+        \draw[red!80!black, ultra thick] (V5) -- (2.2, 0.0);
+        \draw[red!80!black, ultra thick] (V1) -- (3.3, 0.0);
+        \draw[red!80!black, ultra thick] (V1) -- (4.0, 1.4);
+        \draw[red!80!black, ultra thick] (V1) -- (4.0, 2.5);
+        
+        % Dessin des points
+        \foreach \p in {A,B,C,D,E,F,G} \fill (\p) circle (2.5pt);
+    \end{scope}
